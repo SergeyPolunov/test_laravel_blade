@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
     // Task 1. Change the Controller code to pass the variable to the View
-    public function users()
+    public function users(): Factory|View|Application
     {
         $usersCount = User::count();
 
-        return view('users');
+        return view('users', ['usersCount' => $usersCount]);
     }
 
     // Task 2. Change the View code so alert would not show on the screen
